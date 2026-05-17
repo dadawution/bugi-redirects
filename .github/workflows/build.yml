@@ -1,0 +1,44 @@
+name: Build redirects
+
+on:
+  # 每小時整點自動跑（對照表改完最多等 1 小時自動上線）
+  schedule:
+    - cron: '0 * * * *'
+  # 支援手動觸發（在 Actions 頁面點 Run workflow）
+  workflow_dispatch:
+  # 對照表腳本本身改動時也跑
+  push:
+    branches: [main]
+    paths:
+      - 'build_redirects.py'
+      - '.github/workflows/build.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run build script
+        run: python build_redirects.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-build redirects [skip ci]"
+            git push
+          fi
