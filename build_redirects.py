@@ -19,7 +19,7 @@ import urllib.parse
 # ========================================
 # 設定區（如果未來換 Google Sheet 才需要改）
 # ========================================
-SHEET_ID = '1MkVfVsDq6e3bF2oBFEJgU5WiEljjpAquXfNhkVQUNFc'
+SHEET_ID = '1A5s6RfoLKR8OmA45zL5dpq35fPRfT7fE'
 SHEET_NAME = '對照表'
 
 CSV_URL = (
