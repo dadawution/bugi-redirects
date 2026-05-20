@@ -12,7 +12,7 @@ import datetime
 import urllib.request
 import urllib.parse
 
-SHEET_ID   = '1A5s6RfoLKR8OmA45zL5dpq35fPRfT7fE'
+SHEET_ID = '1taNGWstIS_m-44N32a6bM2C3yLjf4hzKB6na2l1lBak'
 SHEET_NAME = '對照表'
 CSV_URL = (
     f'https://docs.google.com/spreadsheets/d/{SHEET_ID}'
